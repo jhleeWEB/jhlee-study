@@ -20,6 +20,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"skipLibCheck": true
 	},
-	"include": ["src", "@types"],
-	"extends": "./tsconfig.path.json"
+	"include": ["src", "@types", "craco.config.js"],
+	"extends": "./tsconfig.paths.json"
 }
