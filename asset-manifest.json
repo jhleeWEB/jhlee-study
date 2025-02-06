@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.1a7488ce.css",
-    "main.js": "/static/js/main.c3407c06.js",
-    "index.html": "/index.html",
-    "main.1a7488ce.css.map": "/static/css/main.1a7488ce.css.map",
-    "main.c3407c06.js.map": "/static/js/main.c3407c06.js.map"
+    "main.css": "/jhlee-study/static/css/main.1a7488ce.css",
+    "main.js": "/jhlee-study/static/js/main.589b035a.js",
+    "index.html": "/jhlee-study/index.html",
+    "main.1a7488ce.css.map": "/jhlee-study/static/css/main.1a7488ce.css.map",
+    "main.589b035a.js.map": "/jhlee-study/static/js/main.589b035a.js.map"
   },
   "entrypoints": [
     "static/css/main.1a7488ce.css",
-    "static/js/main.c3407c06.js"
+    "static/js/main.589b035a.js"
   ]
 }
