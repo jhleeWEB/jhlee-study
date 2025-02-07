@@ -1,11 +1,11 @@
 import React from 'react';
-import Menu from '@components/Menu';
+import Menu from '@/components/menus/Menu';
 import Layout from './pages/Layout';
 
 function App() {
 	return (
 		<React.StrictMode>
-			<Layout leftMenu={<Menu />} />
+			<Layout />
 		</React.StrictMode>
 	);
 }

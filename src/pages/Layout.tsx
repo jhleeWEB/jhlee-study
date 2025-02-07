@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Router from '../Router';
+import Routers from '../Routers';
+import { BrowserRouter } from 'react-router';
+import Menu from '@/components/menus/Menu';
+import SubMenu from '@/components/menus/SubMenu';
 
 const Wrapper = styled.section`
 	display: flex;
@@ -21,17 +24,16 @@ const Main = styled.section`
 	background: lightblue;
 `;
 
-type Props = {
-	leftMenu: React.ReactElement;
-};
-
-const Layout = ({ leftMenu }: Props) => {
+const Layout = () => {
 	return (
 		<Wrapper>
-			<Left>{leftMenu}</Left>
-			<Main>
-				<Router />
-			</Main>
+			<BrowserRouter>
+				<Menu />
+				<SubMenu />
+				<Main>
+					<Routers />
+				</Main>
+			</BrowserRouter>
 		</Wrapper>
 	);
 };
