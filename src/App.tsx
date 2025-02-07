@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
-import Routers from './Router';
+import Menu from '@components/Menu';
+import Layout from './pages/Layout';
 
 function App() {
 	return (
 		<React.StrictMode>
-			<Routers />
+			<Layout leftMenu={<Menu />} />
 		</React.StrictMode>
 	);
 }
