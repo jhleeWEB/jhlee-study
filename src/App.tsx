@@ -1,11 +1,15 @@
 import React from 'react';
-import Menu from '@/components/menus/Menu';
-import Layout from './pages/Layout';
+import { BrowserRouter, Routes, Route } from 'react-router';
+import Home from './pages/Home';
 
 function App() {
 	return (
 		<React.StrictMode>
-			<Layout />
+			<BrowserRouter>
+				<Routes>
+					<Route path='/' element={<Home />} />
+				</Routes>
+			</BrowserRouter>
 		</React.StrictMode>
 	);
 }

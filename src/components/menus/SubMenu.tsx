@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { styled } from 'styled-components';
 
-const SubMenu = () => {
-	return <div></div>;
+const Wrapper = styled.section``;
+
+type Props = {
+	children: ReactNode;
+};
+
+const SubMenu = ({ children }: Props) => {
+	return <Wrapper>{children}</Wrapper>;
 };
 
 export default SubMenu;
