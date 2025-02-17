@@ -2,9 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const Wrapper = styled.section`
-	scroll-snap-type: y mandatory;
-	height: 100vh;
-	overflow-y: scroll;
+	width: 100vw;
 `;
 
 const Home = () => {
