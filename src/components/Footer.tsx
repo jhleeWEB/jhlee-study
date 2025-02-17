@@ -2,17 +2,18 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const Wrapper = styled.section`
-	scroll-snap-type: y mandatory;
-	height: 100vh;
-	overflow-y: scroll;
+	width: 100vw;
+	display: flex;
+	bottom: 0;
+	background-color: lightyellow;
 `;
 
-const Home = () => {
+const Footer = () => {
 	return (
 		<Wrapper>
-			<h1>HOME</h1>
+			<h1>footer</h1>
 		</Wrapper>
 	);
 };
 
-export default Home;
+export default Footer;

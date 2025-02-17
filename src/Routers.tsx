@@ -1,20 +1,20 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
-import Algorithm from './pages/Algorithm';
-import ReactJS from './pages/ReactJS';
-import Javascript from './pages/Javascript';
-import ThreeJS from './pages/ThreeJS';
 import { PATHNAME } from '@global/constants';
 
 const Routers = () => {
 	return (
 		<Routes>
 			<Route path={PATHNAME.HOME} element={<Home />} />
-			<Route path={PATHNAME.ALGORITHM} element={<Algorithm />} />
-			<Route path={PATHNAME.REACTJS} element={<ReactJS />} />
-			<Route path={PATHNAME.JAVASCRIPT} element={<Javascript />} />
-			<Route path={PATHNAME.THREEJS} element={<ThreeJS />} />
+			<Route path={PATHNAME.RANKINGS} element={<div />} />
+			<Route path={PATHNAME.COLLECTIBLES} element={<div />} />
+			<Route path={PATHNAME.STATISTICS} element={<div />} />
+			<Route path={PATHNAME.GUILDS} element={<div />}>
+				<Route path=':guildid' />
+			</Route>
+			<Route path={PATHNAME.BISCHECK + ':playerid'} element={<div />} />
+			<Route path={PATHNAME.CHARACTER + ':playerid'} element={<div />} />
 		</Routes>
 	);
 };

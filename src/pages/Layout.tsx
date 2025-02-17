@@ -1,26 +1,31 @@
-import React from 'react';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import Routers from '../Routers';
-import { BrowserRouter } from 'react-router';
-import Menu from '@/components/menus/Menu';
 import Home from './Home';
-import Algorithm from './Algorithm';
-import Javascript from './Javascript';
 
 const Wrapper = styled.section`
-	display: flex;
 	width: 100vw;
-	height: 100vh;
+	background-color: salmon;
 `;
 
-const Main = styled.section`
-	width: 100%;
-	margin: 0;
-	background: lightblue;
-`;
+const Main = styled.section``;
 
-const Layout = () => {
-	return <Wrapper></Wrapper>;
+type Props = {
+	children: ReactNode;
+};
+
+const Layout = ({ children }: Props) => {
+	return (
+		<Wrapper>
+			<Header>
+				<h1>lostark search</h1>
+				<input placeholder='케릭터 검색'></input>
+			</Header>
+			<Main>{children}</Main>
+			<Footer />
+		</Wrapper>
+	);
 };
 
 export default Layout;

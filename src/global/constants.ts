@@ -1,9 +1,11 @@
 export const PATHNAME = {
 	HOME: '/',
-	REACTJS: '/react',
-	ALGORITHM: '/algorithm',
-	JAVASCRIPT: '/javascript',
-	THREEJS: '/threejs',
+	RANKINGS: '/rankings',
+	GUILDS: '/guildS',
+	STATISTICS: '/statistics',
+	COLLECTIBLES: '/collectibles',
+	BISCHECK: '/bischeck',
+	CHARACTER: '/character',
 };
 
 export const SUBNAME = {
