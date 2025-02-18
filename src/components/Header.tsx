@@ -4,17 +4,24 @@ import { styled } from 'styled-components';
 const Wrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
+  font-size: ${({ theme }) => theme.fontSize.default}
 	width: 100vw;
-	max-height: 64px;
-	background-color: lightblue;
 `;
 
-type Props = {
-	children: ReactNode;
-};
+const HomeButton = styled.button`
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 3rem;
+	padding: 2rem;
+`;
 
-const Header = ({ children }: Props) => {
-	return <Wrapper>{children}</Wrapper>;
+const Header = () => {
+	return (
+		<Wrapper>
+			<HomeButton>hello</HomeButton>
+		</Wrapper>
+	);
 };
 
 export default Header;

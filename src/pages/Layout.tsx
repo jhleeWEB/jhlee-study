@@ -18,10 +18,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
 	return (
 		<Wrapper>
-			<Header>
-				<h1>lostark search</h1>
-				<input placeholder='케릭터 검색'></input>
-			</Header>
+			<Header />
 			<NavigationBar />
 			<Main>{children}</Main>
 			<Footer />
