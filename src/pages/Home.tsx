@@ -1,5 +1,5 @@
 import SearchBar from '@/components/SearchBar';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 const Wrapper = styled.section`
@@ -33,7 +33,9 @@ const Home = () => {
 					<SearchBar />
 				</MainContainer>
 			</Main>
-			<PanelContainer></PanelContainer>
+			<PanelContainer>
+				<Panel></Panel>
+			</PanelContainer>
 		</Wrapper>
 	);
 };
