@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
-import { getCharacterData } from '@/apis/api';
+import apis from '@/apis/api';
 import useDebounce from '@/hooks/useDebounce';
 import CharacterList from './CharacterList/CharacterList';
 import { CharacterInfo } from '@/@types/global/type';
@@ -31,7 +31,8 @@ const SearchBar = ({ placeholder, width }: Props) => {
 	const debounceQuery = useDebounce(searchQuery);
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['characters', debounceQuery],
-		queryFn: ({ queryKey }) => getCharacterData(queryKey[1]),
+		queryFn: ({ queryKey }) =>
+			apis.armories.characters.getSiblings(queryKey[1]),
 		enabled: debounceQuery != '' && !!debounceQuery,
 	});
 
