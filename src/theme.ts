@@ -4,6 +4,11 @@ const windowSize = {
 	lg: 'screen and (max-width: 1024px)',
 };
 
+const bgColor = {
+	primary: 'hsl(229deg 11% 12%)',
+	secondary: 'hsl(223deg 13% 7%)',
+};
+
 const fontSize = {
 	xs: '0.5rem',
 	sm: '0.75rem',
@@ -28,11 +33,21 @@ const lightMode = {
 	secondary: '#ddd',
 	hover: '#00a0ff50',
 };
+const darkMode = {
+	background: '#fff',
+	fontPrimary: 'black',
+	fontSecondary: 'gray',
+	primary: '#00a0ff',
+	secondary: '#ddd',
+	hover: '#00a0ff50',
+};
 
 const theme = {
 	windowSize,
 	fontSize,
 	lightMode,
+	darkMode,
+	bgColor,
 };
 
 export type Theme = keyof typeof theme;

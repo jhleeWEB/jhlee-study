@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
 	width: 100vw;
-	background-color: salmon;
+	background-color: ${({ theme }) => theme.bgColor.secondary};
 `;
 
 const Main = styled.section``;

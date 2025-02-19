@@ -60,9 +60,14 @@ async function getArkPassives(characterName: string) {
 	return res;
 }
 
-type newsType = 'notices' | 'events' | 'alarms';
-
-async function getNews(type: newsType) {
+export type NewsType = 'notices' | 'events' | 'alarms' | string;
+export type NoticeResponse = {
+	Title: string;
+	Date: Date;
+	Link: string;
+	Type: string;
+};
+async function getNews(type: NewsType) {
 	const res = await axios.get(`/news/${type}`);
 	return res;
 }

@@ -5,7 +5,8 @@ const Wrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
   font-size: ${({ theme }) => theme.fontSize.default}
-	width: 100vw;
+  background-color:  ${({ theme }) => theme.bgColor.primary}
+	width: 100%;
 `;
 
 const HomeButton = styled.button`
@@ -14,6 +15,7 @@ const HomeButton = styled.button`
 	cursor: pointer;
 	font-size: 3rem;
 	padding: 2rem;
+	color: white;
 `;
 
 const Header = () => {

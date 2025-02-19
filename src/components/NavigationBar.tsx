@@ -5,27 +5,28 @@ import { PATHNAME } from '@/global/constants';
 
 const Wrapper = styled.section`
 	display: flex;
-	width: 100vw;
+	width: 100%;
 	padding: 1rem;
-	background-color: lightgreen;
+	background-color: ${({ theme }) => theme.bgColor.primary};
 	justify-content: space-between;
 `;
 
 const Container = styled.div``;
 
 type NavLinkProps = {
-	isSelected?: boolean;
+	$isSelected?: boolean;
 };
 
 const NavButton = styled(NavLink)<NavLinkProps>`
 	text-decoration: none;
 	border: 0;
 	background: transparent;
+	color: white;
 	font-size: ${(props) => props.theme.fontSize.lg};
 	font-weight: bold;
 	padding: 1rem;
 	border-bottom: ${(props: NavLinkProps) =>
-		props.isSelected ? 'thick solid black' : 'thick solid transparent'};
+		props.$isSelected ? 'thick solid white' : 'thick solid transparent'};
 
 	&:hover {
 		background-color: gray;
@@ -39,30 +40,30 @@ const NavigationBar = () => {
 	return (
 		<Wrapper>
 			<Container>
-				<NavButton to={PATHNAME.HOME} isSelected={pathname == PATHNAME.HOME}>
+				<NavButton to={PATHNAME.HOME} $isSelected={pathname == PATHNAME.HOME}>
 					홈
 				</NavButton>
 				<NavButton
 					to={PATHNAME.RANKINGS}
-					isSelected={pathname == PATHNAME.RANKINGS}
+					$isSelected={pathname == PATHNAME.RANKINGS}
 				>
 					랭킹
 				</NavButton>
 				<NavButton
 					to={PATHNAME.GUILDS}
-					isSelected={pathname == PATHNAME.GUILDS}
+					$isSelected={pathname == PATHNAME.GUILDS}
 				>
 					길드
 				</NavButton>
 				<NavButton
 					to={PATHNAME.STATISTICS}
-					isSelected={pathname == PATHNAME.STATISTICS}
+					$isSelected={pathname == PATHNAME.STATISTICS}
 				>
 					통계
 				</NavButton>
 				<NavButton
 					to={PATHNAME.COLLECTIBLES}
-					isSelected={pathname == PATHNAME.COLLECTIBLES}
+					$isSelected={pathname == PATHNAME.COLLECTIBLES}
 				>
 					수집품
 				</NavButton>
