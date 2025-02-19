@@ -67,9 +67,17 @@ export type NoticeResponse = {
 	Link: string;
 	Type: string;
 };
-async function getNews(type: NewsType) {
+export type EventResponse = {
+	Title: string;
+	Thumbnail: string;
+	Link: string;
+	StartDate: string;
+	EndDate: string;
+	RewardDate: string | null;
+};
+async function getNews(type: NewsType | unknown) {
 	const res = await axios.get(`/news/${type}`);
-	return res;
+	return res.data;
 }
 
 async function getCalender() {

@@ -31,21 +31,17 @@ const SubTitle = styled.p`
 	font-size: ${({ theme }) => theme.fontSize.sm};
 `;
 
-type Props = {
-	type: NewsType;
-};
-
-const News = ({ type }: Props) => {
-	const { data } = useQuery({
-		queryKey: ['news', type],
+const Notices = () => {
+	const { data } = useQuery<any, any, NoticeResponse[]>({
+		queryKey: ['news', 'notices'],
 		queryFn: ({ queryKey }) => apis.news.getNews(queryKey[1]),
 	});
 	const [currentPage, setCurrentPage] = useState(0);
 	const [notices, setNotices] = useState<NoticeResponse[]>([]);
 
 	useEffect(() => {
-		if (data?.data) {
-			const groupedData = cluster<NoticeResponse>(data.data, 5);
+		if (data) {
+			const groupedData = cluster<NoticeResponse>(data, 5);
 			console.log(groupedData[currentPage]);
 			setNotices((prevState) => [...prevState, ...groupedData[currentPage]]);
 		}
@@ -73,4 +69,4 @@ const News = ({ type }: Props) => {
 	);
 };
 
-export default News;
+export default Notices;
