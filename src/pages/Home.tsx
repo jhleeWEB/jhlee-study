@@ -1,6 +1,7 @@
-import News from '@/components/News';
+import Events from '@/components/Events';
+import Notices from '@/components/Notices';
 import SearchBar from '@/components/SearchBar';
-import React, { useMemo, useRef, useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import bgImg from '../imgs/bg-img.jpg';
 
@@ -56,19 +57,19 @@ const Home = () => {
 			<PanelContainer>
 				<Panel>
 					<header>로스트아크 공지사항</header>
-					<News type='notices' />
+					<Notices />
 				</Panel>
 				<Panel>
 					<header>즐겨찾기</header>
-					<News type='notices' />
+					<Notices />
 				</Panel>
 				<Panel>
 					<header>로스트아크 이벤트</header>
-					<News type='notices' />
+					<Events />
 				</Panel>
 				<Panel>
 					<header>오늘의 일정</header>
-					<News type='notices' />
+					<Notices />
 				</Panel>
 			</PanelContainer>
 		</Wrapper>
