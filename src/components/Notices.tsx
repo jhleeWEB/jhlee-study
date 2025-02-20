@@ -42,7 +42,6 @@ const Notices = () => {
 	useEffect(() => {
 		if (data) {
 			const groupedData = cluster<NoticeResponse>(data, 5);
-			console.log(groupedData[currentPage]);
 			setNotices((prevState) => [...prevState, ...groupedData[currentPage]]);
 		}
 	}, [data, currentPage]);

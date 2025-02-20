@@ -1,3 +1,4 @@
+import Calendar from '@/components/Calendar';
 import Events from '@/components/Events';
 import Notices from '@/components/Notices';
 import SearchBar from '@/components/SearchBar';
@@ -45,6 +46,16 @@ const Panel = styled.div`
 	}
 `;
 
+const CalendarContainer = styled.div`
+	padding: 3rem;
+	& > header {
+		font-weight: bold;
+		font-size: ${({ theme }) => theme.fontSize.lg};
+		background-color: ${({ theme }) => theme.bgColor.primary};
+		padding: 1rem;
+	}
+`;
+
 const Home = () => {
 	return (
 		<Wrapper>
@@ -60,18 +71,14 @@ const Home = () => {
 					<Notices />
 				</Panel>
 				<Panel>
-					<header>즐겨찾기</header>
-					<Notices />
-				</Panel>
-				<Panel>
 					<header>로스트아크 이벤트</header>
 					<Events />
 				</Panel>
-				<Panel>
-					<header>오늘의 일정</header>
-					<Notices />
-				</Panel>
 			</PanelContainer>
+			<CalendarContainer>
+				<header>오늘의 일정</header>
+				<Calendar />
+			</CalendarContainer>
 		</Wrapper>
 	);
 };
