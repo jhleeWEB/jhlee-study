@@ -1,7 +1,7 @@
 import { CalendarResponse, Item } from '@/apis/api';
 import useGameContents from '@/hooks/useGameContents';
 import useTimer from '@/hooks/useTimer';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Island from './Island';
 import dayjs from 'dayjs';
@@ -32,7 +32,7 @@ type Props = {
 };
 
 const AdventureIsland = ({ contents }: Props) => {
-	const limitedIslands = useGameContents(contents);
+	const limitedIslands = useGameContents(contents, '모험 섬');
 	const remainingTime = useTimer(limitedIslands[0].nextTime);
 	const { nextTime } = limitedIslands[0];
 
@@ -42,21 +42,19 @@ const AdventureIsland = ({ contents }: Props) => {
 				<span>모험 섬</span>
 				<div>
 					<span>{`${dayjs(nextTime).format('HH:mm:ss')}`}</span>
-					<span>{`${remainingTime}`}</span>
+					<span>{`${remainingTime || '00:00:00'}`}</span>
 				</div>
 			</Title>
 			<Container>
-				{limitedIslands.map(
-					({ limitedRewards, icon, islandName, rewards }, i) => (
-						<Island
-							key={islandName}
-							icon={icon}
-							name={islandName}
-							rewards={rewards}
-							limitedRewards={limitedRewards}
-						/>
-					)
-				)}
+				{limitedIslands.map(({ limitedRewards, icon, name, rewards }, i) => (
+					<Island
+						key={name}
+						icon={icon}
+						name={name}
+						rewards={rewards}
+						limitedRewards={limitedRewards}
+					/>
+				))}
 			</Container>
 		</Wrapper>
 	);

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import apis, { CalendarResponse } from '@/apis/api';
 import { styled } from 'styled-components';
 import AdventureIsland from './AdventureIsland/AdventureIsland';
+import FieldBoss from './FieldBoss/FieldBoss';
 
 const Wrapper = styled.div``;
 
@@ -11,7 +12,7 @@ const Calendar = () => {
 		queryKey: ['gamecontent', 'calendar'],
 		queryFn: () => apis.contents.getCalender(),
 	});
-	const [worldBoss, setWorldBoss] = useState<CalendarResponse[]>([]);
+	const [fieldBoss, setFieldBoss] = useState<CalendarResponse[]>([]);
 	const [chaosGate, setChaosGate] = useState<CalendarResponse[]>([]);
 	const [adventureIsland, setAdventureIsland] = useState<CalendarResponse[]>(
 		[]
@@ -19,7 +20,7 @@ const Calendar = () => {
 	useEffect(() => {
 		if (data) {
 			(function batch() {
-				setWorldBoss(data.filter((n) => n.CategoryName == '필드보스'));
+				setFieldBoss(data.filter((n) => n.CategoryName == '필드보스'));
 				setChaosGate(data.filter((n) => n.CategoryName == '카오스게이트'));
 				setAdventureIsland(
 					data.filter((n) => n.CategoryName.includes('모험 섬'))
@@ -32,6 +33,7 @@ const Calendar = () => {
 			{adventureIsland && adventureIsland.length > 0 && (
 				<AdventureIsland contents={adventureIsland} />
 			)}
+			{fieldBoss && fieldBoss.length > 0 && <FieldBoss contents={fieldBoss} />}
 			{/* <Title>필드 보스</Title>
 			{worldBoss.map((n) => (
 				<div>{n.ContentsName}</div>

@@ -1,51 +1,82 @@
 import { CalendarResponse, CategoryName, Item } from '@/apis/api';
 import { useState } from 'react';
 
-export type IslandContent = {
-	islandName: string;
+export type Content = {
+	name: string;
 	icon: string;
-	limitedRewards: Item[];
+	limitedRewards: Item[] | [];
 	rewards: Item[];
 	nextTime: Date;
+	minLevel: number;
 };
 
-const useGameContents = (contents: CalendarResponse[]) => {
-	const [limitedIslands] = useState<IslandContent[]>(() => {
+const useGameContents = (
+	contents: CalendarResponse[],
+	category: CategoryName
+) => {
+	const [content] = useState<Content[]>(() => {
 		const today = new Date();
-		const islands = contents.filter(
+		const events = contents.filter(
 			(n) => today.getDay() == new Date(n.StartTimes[0]).getDay()
 		);
-		const result = islands.map((island) => {
-			const normalRewards = island.RewardItems[0].Items.filter(
-				(n) => !n.StartTimes
-			);
-			const limitedRewards = island.RewardItems[0].Items.filter(
-				(n) => n.StartTimes
-			);
 
-			const currentTime = today.getTime();
-			let remain = Infinity;
-			let upComingTime = '';
-			for (let time of island.StartTimes) {
-				const nextTime = new Date(time).getTime();
-				if (currentTime < nextTime && nextTime - currentTime < remain) {
-					remain = nextTime - currentTime;
-					upComingTime = time;
+		switch (category) {
+			case '모험 섬':
+				const result = events.map((event) => {
+					const normalRewards = event.RewardItems[0].Items.filter(
+						(n) => !n.StartTimes
+					);
+					const limitedRewards = event.RewardItems[0].Items.filter(
+						(n) => n.StartTimes
+					);
+
+					const currentTime = today.getTime();
+					let remain = Infinity;
+					let upComingTime = '';
+					for (let time of event.StartTimes) {
+						const nextTime = new Date(time).getTime();
+						if (currentTime < nextTime && nextTime - currentTime < remain) {
+							remain = nextTime - currentTime;
+							upComingTime = time;
+						}
+					}
+					return {
+						name: event.ContentsName,
+						limitedRewards: limitedRewards,
+						rewards: normalRewards,
+						icon: event.ContentsIcon,
+						nextTime: new Date(upComingTime),
+						minLevel: event.MinItemLevel,
+					};
+				});
+				return result;
+			case '필드보스':
+				const currentTime = today.getTime();
+				let remain = Infinity;
+				let upComingTime = '';
+				for (let time of contents[0].StartTimes) {
+					const nextTime = new Date(time).getTime();
+					if (currentTime < nextTime && nextTime - currentTime < remain) {
+						remain = nextTime - currentTime;
+						upComingTime = time;
+					}
 				}
-			}
-
-			return {
-				islandName: island.ContentsName,
-				limitedRewards: limitedRewards,
-				rewards: normalRewards,
-				icon: island.ContentsIcon,
-				nextTime: new Date(upComingTime),
-			};
-		});
-		return result;
+				return [
+					{
+						name: contents[0].ContentsName,
+						limitedRewards: [],
+						rewards: contents[0].RewardItems[0].Items,
+						icon: contents[0].ContentsIcon,
+						nextTime: new Date(upComingTime),
+						minLevel: contents[0].MinItemLevel,
+					},
+				];
+			default:
+				return [];
+		}
 	});
 
-	return limitedIslands;
+	return content;
 };
 
 export default useGameContents;
