@@ -17,7 +17,7 @@ const Title = styled.div`
 	padding: 1rem;
 	font-size: ${({ theme }) => theme.fontSize.lg};
 	font-weight: bold;
-
+	background-color: ${({ theme }) => theme.bgColor.primary};
 	& > div > span:nth-child(1) {
 		color: grey;
 		margin-right: 1rem;
