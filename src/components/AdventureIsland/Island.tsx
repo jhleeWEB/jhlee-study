@@ -1,5 +1,4 @@
 import { Item } from '@/apis/api';
-import { IslandContent } from '@/hooks/useGameContents';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import Icon from '../Icon';
@@ -114,7 +113,7 @@ const Island = ({ icon, name, rewards, limitedRewards }: Props) => {
 							<PopupContainer>
 								<p>상시 보상</p>
 								{rewards.map((reward) => (
-									<Reward $grade={reward.Grade}>
+									<Reward key={reward.Name} $grade={reward.Grade}>
 										<Icon src={reward.Icon} size={2} />
 										{reward.Name}
 									</Reward>
@@ -123,7 +122,7 @@ const Island = ({ icon, name, rewards, limitedRewards }: Props) => {
 							<PopupContainer>
 								<p>한정 보상</p>
 								{limitedRewards.map((reward) => (
-									<Reward $grade={reward.Grade}>
+									<Reward key={reward.Name} $grade={reward.Grade}>
 										<Icon src={reward.Icon} size={2} />
 										{reward.Name}
 									</Reward>

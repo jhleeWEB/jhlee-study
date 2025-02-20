@@ -6,6 +6,7 @@ export type IslandContent = {
 	icon: string;
 	limitedRewards: Item[];
 	rewards: Item[];
+	nextTime: Date;
 };
 
 const useGameContents = (contents: CalendarResponse[]) => {
@@ -22,11 +23,23 @@ const useGameContents = (contents: CalendarResponse[]) => {
 				(n) => n.StartTimes
 			);
 
+			const currentTime = today.getTime();
+			let remain = Infinity;
+			let upComingTime = '';
+			for (let time of island.StartTimes) {
+				const nextTime = new Date(time).getTime();
+				if (currentTime < nextTime && nextTime - currentTime < remain) {
+					remain = nextTime - currentTime;
+					upComingTime = time;
+				}
+			}
+
 			return {
 				islandName: island.ContentsName,
 				limitedRewards: limitedRewards,
 				rewards: normalRewards,
 				icon: island.ContentsIcon,
+				nextTime: new Date(upComingTime),
 			};
 		});
 		return result;
