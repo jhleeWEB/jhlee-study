@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
 	width: 100vw;
-	background-color: salmon;
+	background-color: ${({ theme }) => theme.bgColor.secondary};
 `;
 
 const Main = styled.section``;
@@ -18,10 +18,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
 	return (
 		<Wrapper>
-			<Header>
-				<h1>lostark search</h1>
-				<input placeholder='케릭터 검색'></input>
-			</Header>
+			<Header />
 			<NavigationBar />
 			<Main>{children}</Main>
 			<Footer />
