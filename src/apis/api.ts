@@ -104,7 +104,7 @@ export type CalendarResponse = {
 
 export type CategoryName =
 	| '카오스게이트'
-	| '모험섬'
+	| '모험 섬'
 	| '섬'
 	| '항해'
 	| '필드보스';
