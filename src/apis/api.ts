@@ -80,9 +80,38 @@ async function getNews(type: NewsType | unknown) {
 	return res.data;
 }
 
+export type Item = {
+	Name: string;
+	Icon: string;
+	Grade: string;
+	StartTimes: [string | null];
+};
+
+export type RewardItems = {
+	ItemLevel: number;
+	Items: Item[];
+};
+
+export type CalendarResponse = {
+	CategoryName: string;
+	ContentsName: string;
+	ContentsIcon: string;
+	MinItemLevel: number;
+	StartTimes: string[];
+	Location: string;
+	RewardItems: RewardItems[];
+};
+
+export type CategoryName =
+	| '카오스게이트'
+	| '모험섬'
+	| '섬'
+	| '항해'
+	| '필드보스';
+
 async function getCalender() {
-	const res = await axios.get(`/news/calendar`);
-	return res;
+	const res = await axios.get(`/gamecontents/calendar`);
+	return res.data;
 }
 
 const apis = {

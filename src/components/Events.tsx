@@ -45,7 +45,6 @@ const Events = () => {
 	useEffect(() => {
 		if (data) {
 			const groupedData = cluster<EventResponse>(data, 3);
-			console.log(groupedData[currentPage]);
 			setEvents((prevState) => [...prevState, ...groupedData[currentPage]]);
 		}
 	}, [data, currentPage]);
