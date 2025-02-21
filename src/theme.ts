@@ -18,6 +18,11 @@ const colors = {
 };
 
 const sizes = {
+	gap: {
+		s: '1rem',
+		m: '2rem',
+		l: '3rem',
+	},
 	window: {
 		s: 'screen and (max-width: 600px)',
 		m: 'screen and (max-width: 760px)',
