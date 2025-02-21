@@ -4,8 +4,8 @@ import { styled } from 'styled-components';
 const Wrapper = styled.section`
 	display: flex;
 	justify-content: space-between;
-  font-size: ${({ theme }) => theme.fontSize.default}
-  background-color:  ${({ theme }) => theme.bgColor.primary}
+	font-size: ${({ theme }) => theme.sizes.font.m};
+	background-color: ${({ theme }) => theme.colors.background.default};
 	width: 100%;
 `;
 

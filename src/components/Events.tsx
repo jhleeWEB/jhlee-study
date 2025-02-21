@@ -17,7 +17,7 @@ const Item = styled(NavLink)`
 	color: white;
 	cursor: pointer;
 	text-decoration: none;
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	background-color: ${({ theme }) => theme.colors.background.default};
 	margin-top: 0.1rem;
 	&:hover {
 		background-color: gray;
@@ -27,9 +27,9 @@ const Title = styled.p`
 	display: flex;
 	justify-content: space-between;
 	padding: 0rem 1rem;
-	font-size: ${({ theme }) => theme.fontSize.lg};
+	font-size: ${({ theme }) => theme.sizes.font.l};
 	& > text:nth-child(2) {
-		font-size: ${({ theme }) => theme.fontSize.md};
+		font-size: ${({ theme }) => theme.sizes.font.m};
 	}
 `;
 

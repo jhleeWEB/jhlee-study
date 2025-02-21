@@ -1,4 +1,4 @@
-import { CharacterInfo } from '@/@types/global/type';
+import { CharacterInfo } from '@/types/type';
 import React from 'react';
 import { styled } from 'styled-components';
 

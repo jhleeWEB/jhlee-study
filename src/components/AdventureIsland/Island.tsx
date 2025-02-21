@@ -10,8 +10,8 @@ const Wrapper = styled.div`
 	padding: 1rem;
 	align-items: center;
 	justify-content: space-between;
-	font-size: ${({ theme }) => theme.fontSize.lg};
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	font-size: ${({ theme }) => theme.sizes.font.l};
+	background-color: ${({ theme }) => theme.colors.background.default};
 `;
 
 const IslandContainer = styled.div`
@@ -30,7 +30,7 @@ const RewardContainer = styled.div`
 const MainLimitedReward = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: ${({ theme }) => theme.fontSize.md};
+	font-size: ${({ theme }) => theme.sizes.font.m};
 	font-weight: bold;
 	border-radius: 0.5rem;
 	background-color: grey;

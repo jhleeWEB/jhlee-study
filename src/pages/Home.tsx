@@ -40,8 +40,8 @@ const Panel = styled.div`
 	width: 100%;
 	& > header {
 		font-weight: bold;
-		font-size: ${({ theme }) => theme.fontSize.lg};
-		background-color: ${({ theme }) => theme.bgColor.primary};
+		font-size: ${({ theme }) => theme.sizes.font.l};
+		background-color: ${({ theme }) => theme.colors.background.default};
 		padding: 1rem;
 	}
 `;
@@ -50,8 +50,8 @@ const CalendarContainer = styled.div`
 	padding: 3rem;
 	& > header {
 		font-weight: bold;
-		font-size: ${({ theme }) => theme.fontSize.lg};
-		background-color: ${({ theme }) => theme.bgColor.primary};
+		font-size: ${({ theme }) => theme.sizes.font.l};
+		background-color: ${({ theme }) => theme.colors.background.default};
 		padding: 1rem;
 	}
 `;

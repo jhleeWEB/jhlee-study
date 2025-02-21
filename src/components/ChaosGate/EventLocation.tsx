@@ -8,7 +8,7 @@ const LocationContainer = styled.div`
 	gap: 1rem;
 `;
 const Location = styled.div`
-	font-size: ${({ theme }) => theme.fontSize.md};
+	font-size: ${({ theme }) => theme.sizes.font.m};
 `;
 
 type Props = {

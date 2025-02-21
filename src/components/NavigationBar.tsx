@@ -6,7 +6,7 @@ import { PATHNAME } from '@/global/constants';
 const Wrapper = styled.section`
 	display: flex;
 	padding: 1rem;
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	background-color: ${({ theme }) => theme.colors.background.default};
 	justify-content: space-between;
 `;
 
@@ -21,7 +21,7 @@ const NavButton = styled(NavLink)<NavLinkProps>`
 	border: 0;
 	background: transparent;
 	color: white;
-	font-size: ${(props) => props.theme.fontSize.lg};
+	font-size: ${(props) => props.theme.sizes.font.l};
 	font-weight: bold;
 	padding: 1rem;
 	border-bottom: ${(props: NavLinkProps) =>

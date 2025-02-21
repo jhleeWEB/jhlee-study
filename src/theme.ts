@@ -1,55 +1,53 @@
-const windowSize = {
-	sm: 'screen and (max-width: 600px)',
-	md: 'screen and (max-width: 760px)',
-	lg: 'screen and (max-width: 1024px)',
+const colors = {
+	highLight: {
+		default: '#50ce97',
+	},
+	font: {
+		default: '#f7f7f7',
+		dark: '#b4b5bc',
+		darken: '#4a505a',
+		darker: '#a5a6ae',
+	},
+	background: {
+		light: '#31363f',
+		default: '#1c1d22',
+		dark: '#17181c',
+		darken: '#101114',
+		darker: '#000000',
+	},
 };
 
-const bgColor = {
-	primary: 'hsl(229deg 11% 12%)',
-	secondary: 'hsl(223deg 13% 7%)',
-};
+const sizes = {
+	window: {
+		s: 'screen and (max-width: 600px)',
+		m: 'screen and (max-width: 760px)',
+		l: 'screen and (max-width: 1024px)',
+	},
+	font: {
+		s: '1rem',
+		m: '2rem',
+		l: '3rem',
+		weight: {
+			s: 'thin',
+			m: 'regular',
+			l: 'bold',
+		},
+	},
 
-const fontSize = {
-	xs: '0.5rem',
-	sm: '0.75rem',
-	default: '1rem',
-	md: '1.25rem',
-	lg: '1.5rem',
-};
-
-const fontWeight = {
-	thin: '',
-	light: '',
-	medium: '',
-	bold: '',
-	black: '',
-};
-
-const lightMode = {
-	background: '#fff',
-	fontPrimary: 'black',
-	fontSecondary: 'gray',
-	primary: '#00a0ff',
-	secondary: '#ddd',
-	hover: '#00a0ff50',
-};
-const darkMode = {
-	background: '#fff',
-	fontPrimary: 'black',
-	fontSecondary: 'gray',
-	primary: '#00a0ff',
-	secondary: '#ddd',
-	hover: '#00a0ff50',
+	border: {
+		radius: {
+			s: '0.5rem',
+			m: '1rem',
+			l: '1,5rem',
+		},
+	},
 };
 
 const theme = {
-	windowSize,
-	fontSize,
-	lightMode,
-	darkMode,
-	bgColor,
+	sizes,
+	colors,
 };
 
-export type Theme = keyof typeof theme;
+export type Theme = typeof theme;
 
 export default theme;

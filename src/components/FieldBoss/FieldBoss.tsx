@@ -15,9 +15,9 @@ const Title = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 1rem;
-	font-size: ${({ theme }) => theme.fontSize.lg};
+	font-size: ${({ theme }) => theme.sizes.font.l};
 	font-weight: bold;
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	background-color: ${({ theme }) => theme.colors.background.default};
 	& > div > span:nth-child(1) {
 		color: grey;
 		margin-right: 1rem;
@@ -26,14 +26,14 @@ const Title = styled.div`
 
 const Container = styled.div`
 	display: flex;
-	font-size: ${({ theme }) => theme.fontSize.lg};
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	font-size: ${({ theme }) => theme.sizes.font.l};
+	background-color: ${({ theme }) => theme.colors.background.default};
 `;
 
 const Rewards = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	font-size: ${({ theme }) => theme.fontSize.md};
+	font-size: ${({ theme }) => theme.sizes.font.m};
 `;
 
 type RewardProps = {

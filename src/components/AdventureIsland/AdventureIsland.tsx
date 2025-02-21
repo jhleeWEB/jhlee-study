@@ -14,7 +14,7 @@ const Title = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 1rem;
-	font-size: ${({ theme }) => theme.fontSize.lg};
+	font-size: ${({ theme }) => theme.sizes.font.l};
 	font-weight: bold;
 
 	& > div > span:nth-child(1) {

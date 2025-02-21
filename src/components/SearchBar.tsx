@@ -1,15 +1,9 @@
-import React, {
-	ReactEventHandler,
-	useDebugValue,
-	useRef,
-	useState,
-} from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import apis from '@/apis/api';
 import useDebounce from '@/hooks/useDebounce';
 import CharacterList from './CharacterList/CharacterList';
-import { CharacterInfo } from '@/@types/global/type';
 
 const Wrapper = styled.div``;
 

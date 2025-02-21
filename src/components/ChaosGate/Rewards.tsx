@@ -8,7 +8,7 @@ const Wrapper = styled.div``;
 const RewardsContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	font-size: ${({ theme }) => theme.fontSize.md};
+	font-size: ${({ theme }) => theme.sizes.font.m};
 `;
 
 type RewardProps = {
