@@ -30,8 +30,8 @@ const sizes = {
 	},
 	font: {
 		s: '1rem',
-		m: '2rem',
-		l: '3rem',
+		m: '1.5rem',
+		l: '2rem',
 		weight: {
 			s: 'thin',
 			m: 'regular',
@@ -43,7 +43,7 @@ const sizes = {
 		radius: {
 			s: '0.5rem',
 			m: '1rem',
-			l: '1,5rem',
+			l: '1.5rem',
 		},
 	},
 };
