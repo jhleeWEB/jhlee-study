@@ -8,6 +8,7 @@ export type Content = {
 	rewards: Item[];
 	nextTime: Date;
 	minLevel: number;
+	location: string;
 };
 
 const useGameContents = (
@@ -16,13 +17,13 @@ const useGameContents = (
 ) => {
 	const [content] = useState<Content[]>(() => {
 		const today = new Date();
-		const events = contents.filter(
-			(n) => today.getDay() == new Date(n.StartTimes[0]).getDay()
-		);
 
 		switch (category) {
 			case '모험 섬':
-				const result = events.map((event) => {
+				const events = contents.filter(
+					(n) => today.getDay() == new Date(n.StartTimes[0]).getDay()
+				);
+				const islandContent = events.map((event) => {
 					const normalRewards = event.RewardItems[0].Items.filter(
 						(n) => !n.StartTimes
 					);
@@ -47,9 +48,10 @@ const useGameContents = (
 						icon: event.ContentsIcon,
 						nextTime: new Date(upComingTime),
 						minLevel: event.MinItemLevel,
+						location: event.Location,
 					};
 				});
-				return result;
+				return islandContent;
 			case '필드보스':
 				const currentTime = today.getTime();
 				let remain = Infinity;
@@ -69,8 +71,33 @@ const useGameContents = (
 						icon: contents[0].ContentsIcon,
 						nextTime: new Date(upComingTime),
 						minLevel: contents[0].MinItemLevel,
+						location: contents[0].Location,
 					},
 				];
+
+			case '카오스게이트':
+				const chaosContent = contents.map((event) => {
+					const currentTime = today.getTime();
+					let remain = Infinity;
+					let upComingTime = '';
+					for (let time of event.StartTimes) {
+						const nextTime = new Date(time).getTime();
+						if (currentTime < nextTime && nextTime - currentTime < remain) {
+							remain = nextTime - currentTime;
+							upComingTime = time;
+						}
+					}
+					return {
+						name: event.ContentsName,
+						limitedRewards: [],
+						rewards: event.RewardItems[0].Items,
+						icon: event.ContentsIcon,
+						nextTime: new Date(upComingTime),
+						minLevel: event.MinItemLevel,
+						location: event.Location,
+					};
+				});
+				return chaosContent;
 			default:
 				return [];
 		}
