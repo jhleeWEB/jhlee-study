@@ -2,6 +2,11 @@ html {
 	font-size: 62.5%;
 	color: white;
 	background-color: hsl(223deg 13% 7%);
+	width: 100vw;
+	overflow-y: auto;
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 button {
@@ -9,6 +14,7 @@ button {
 }
 
 body {
+	width: 100%;
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

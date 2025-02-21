@@ -5,7 +5,6 @@ import { PATHNAME } from '@/global/constants';
 
 const Wrapper = styled.section`
 	display: flex;
-	width: 100%;
 	padding: 1rem;
 	background-color: ${({ theme }) => theme.bgColor.primary};
 	justify-content: space-between;
