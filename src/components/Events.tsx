@@ -56,10 +56,10 @@ const Events = () => {
 					return (
 						<Item to={d.Link} key={d.Link}>
 							<Title>
-								<text>{d.Title}</text>
-								<text>
+								<span>{d.Title}</span>
+								<span>
 									{d.StartDate.split('T')[0]} ~ {d.EndDate.split('T')[0]}
-								</text>
+								</span>
 							</Title>
 							<img src={d.Thumbnail} width='100%' />
 						</Item>

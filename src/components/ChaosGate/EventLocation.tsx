@@ -23,7 +23,7 @@ const EventLocation = ({ locationInfo }: Props) => {
 			</div>
 			<LocationContainer>
 				{locationInfo.map((n) => (
-					<Location>
+					<Location key={n[0] + n[1]}>
 						<span>{n[0]}</span>
 						<span>{n[1]}</span>
 					</Location>

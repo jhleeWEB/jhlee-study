@@ -49,8 +49,8 @@ const Rewards = ({ rewards }: Props) => {
 				<p>보상</p>
 			</div>
 			<RewardsContainer>
-				{rewards.map((n) => (
-					<Reward $grade={n.Grade}>
+				{rewards.map((n, i) => (
+					<Reward key={n.Name + i} $grade={n.Grade}>
 						<Icon src={n.Icon} size={2} />
 						{n.Name}
 					</Reward>

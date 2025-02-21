@@ -98,7 +98,7 @@ const FieldBoss = (props: Props) => {
 						{rewards.map((n, i) => (
 							<Reward key={n.Name + i} $grade={n.Grade}>
 								<Icon src={n.Icon} />
-								<text>{n.Name}</text>
+								<span>{n.Name}</span>
 							</Reward>
 						))}
 					</Rewards>
