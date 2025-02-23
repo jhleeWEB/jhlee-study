@@ -1,4 +1,16 @@
+export interface IItem {
+	[key: string]: string;
+}
 const colors = {
+	item: {
+		고대: '#bca37d',
+		유물: '#e25041',
+		전설: '#fba026',
+		영웅: '#7504fb',
+		희귀: '#2d82c9',
+		고급: '#61bd6d',
+		일반: '#f7f7f7',
+	},
 	highLight: {
 		default: '#50ce97',
 	},
