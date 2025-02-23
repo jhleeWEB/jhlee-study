@@ -30,19 +30,19 @@ const MainContainer = styled.div`
 
 const PanelContainer = styled.section(({ theme }) => ({
 	display: 'grid',
-	gridGap: theme.sizes.gap.s,
 	gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-	padding: theme.sizes.gap.l,
 	justifyItems: 'center',
+	gridGap: theme.sizes.gap.s,
+	padding: theme.sizes.gap.l,
 }));
 
 const Panel = styled.div(({ theme }) => ({
 	width: '100%',
 	'&>header': {
-		fontWeight: 'bold',
+		fontWeight: theme.sizes.font.weight.l,
 		fontSize: theme.sizes.font.l,
 		backgroundColor: theme.colors.background.default,
-		padding: ' 1rem',
+		padding: theme.sizes.gap.s,
 		borderTopLeftRadius: theme.sizes.border.radius.s,
 		borderTopRightRadius: theme.sizes.border.radius.s,
 	},

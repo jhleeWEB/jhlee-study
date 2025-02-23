@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 
 const Wrapper = styled.div(({ theme }) => ({
 	padding: theme.sizes.gap.s,
+	backgroundColor: theme.colors.background.dark,
 }));
 
 const Title = styled.div(({ theme }) => ({
