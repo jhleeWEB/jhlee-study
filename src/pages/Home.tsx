@@ -28,11 +28,11 @@ const MainContainer = styled.div`
 	text-align: center;
 `;
 
-const PanelContainer = styled.section(() => ({
+const PanelContainer = styled.section(({ theme }) => ({
 	display: 'grid',
-	gridGap: '2rem',
+	gridGap: theme.sizes.gap.s,
 	gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-	padding: '3rem',
+	padding: theme.sizes.gap.l,
 	justifyItems: 'center',
 }));
 
@@ -49,12 +49,14 @@ const Panel = styled.div(({ theme }) => ({
 }));
 
 const CalendarContainer = styled.div(({ theme }) => ({
-	padding: '3rem',
+	padding: theme.sizes.gap.l,
 	'&>header': {
-		fontWeight: 'bold',
+		borderTopLeftRadius: theme.sizes.border.radius.s,
+		borderTopRightRadius: theme.sizes.border.radius.s,
+		fontWeight: theme.sizes.font.weight.l,
 		fontSize: theme.sizes.font.l,
 		backgroundColor: theme.colors.background.default,
-		padding: '1rem',
+		padding: theme.sizes.gap.s,
 	},
 }));
 

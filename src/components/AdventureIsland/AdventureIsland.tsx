@@ -6,22 +6,21 @@ import { styled } from 'styled-components';
 import Island from './Island';
 import dayjs from 'dayjs';
 
-const Wrapper = styled.div`
-	padding: 1rem;
-`;
+const Wrapper = styled.div(({ theme }) => ({
+	padding: theme.sizes.gap.s,
+}));
 
-const Title = styled.div`
-	display: flex;
-	justify-content: space-between;
-	padding: 1rem;
-	font-size: ${({ theme }) => theme.sizes.font.l};
-	font-weight: bold;
-
-	& > div > span:nth-child(1) {
-		color: grey;
-		margin-right: 1rem;
-	}
-`;
+const Title = styled.div(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	padding: theme.sizes.gap.s,
+	fontSize: theme.sizes.font.m,
+	fontWeight: theme.sizes.font.weight.l,
+	'&>div>span:nth-child(1)': {
+		color: theme.colors.font.dark,
+		marginRight: theme.sizes.gap.s,
+	},
+}));
 
 const Container = styled.div`
 	display: flex;
@@ -41,7 +40,7 @@ const AdventureIsland = ({ contents }: Props) => {
 			<Title>
 				<span>모험 섬</span>
 				<div>
-					<span>{`${dayjs(nextTime).format('HH:mm:ss')}`}</span>
+					<span>{`${dayjs(nextTime).format('HH:mm:ss') || '00:00:00'}`}</span>
 					<span>{`${remainingTime || '00:00:00'}`}</span>
 				</div>
 			</Title>
