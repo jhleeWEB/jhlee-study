@@ -28,33 +28,33 @@ const MainContainer = styled.div`
 	text-align: center;
 `;
 
-const PanelContainer = styled.section`
-	display: grid;
-	grid-gap: 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	padding: 3rem;
-	justify-items: center;
-`;
+const PanelContainer = styled.section(() => ({
+	display: 'grid',
+	gridGap: '2rem',
+	gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+	padding: '3rem',
+	justifyItems: 'center',
+}));
 
-const Panel = styled.div`
-	width: 100%;
-	& > header {
-		font-weight: bold;
-		font-size: ${({ theme }) => theme.sizes.font.l};
-		background-color: ${({ theme }) => theme.colors.background.default};
-		padding: 1rem;
-	}
-`;
+const Panel = styled.div(({ theme }) => ({
+	width: '100%',
+	'&>header': {
+		fontWeight: 'bold',
+		fontSize: theme.sizes.font.l,
+		backgroundColor: theme.colors.background.default,
+		padding: ' 1rem',
+	},
+}));
 
-const CalendarContainer = styled.div`
-	padding: 3rem;
-	& > header {
-		font-weight: bold;
-		font-size: ${({ theme }) => theme.sizes.font.l};
-		background-color: ${({ theme }) => theme.colors.background.default};
-		padding: 1rem;
-	}
-`;
+const CalendarContainer = styled.div(({ theme }) => ({
+	padding: '3rem',
+	'&>header': {
+		fontWeight: 'bold',
+		fontSize: theme.sizes.font.l,
+		backgroundColor: theme.colors.background.default,
+		padding: '1rem',
+	},
+}));
 
 const Home = () => {
 	return (
