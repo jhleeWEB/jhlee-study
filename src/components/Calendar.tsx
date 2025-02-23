@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import apis, { CalendarResponse } from '@/apis/api';
-import { styled } from 'styled-components';
 import AdventureIsland from './AdventureIsland/AdventureIsland';
 import FieldBoss from './FieldBoss/FieldBoss';
 import ChaosGate from './ChaosGate/ChaosGate';

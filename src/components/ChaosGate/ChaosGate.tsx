@@ -9,26 +9,30 @@ import ContentInfo from './ContentInfo';
 import EventLocation from './EventLocation';
 import Rewards from './Rewards';
 
-const Wrapper = styled.div`
-	width: 100%;
-	padding: 1rem;
-`;
+const Wrapper = styled.div(({ theme }) => ({
+	width: '100%',
+	padding: theme.sizes.gap.s,
+	fontSize: theme.sizes.font.m,
+	background: theme.colors.background.dark,
+}));
 
-const Title = styled.div`
-	display: flex;
-	justify-content: space-between;
-	padding: 1rem;
-	font-size: ${({ theme }) => theme.sizes.font.l};
-	font-weight: bold;
-	background-color: ${({ theme }) => theme.colors.background.default};
-	& > div > span:nth-child(1) {
-		color: grey;
-		margin-right: 1rem;
-	}
-`;
+const Title = styled.div(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	padding: theme.sizes.gap.s,
+	fontSize: theme.sizes.font.l,
+	fontWeight: theme.sizes.font.weight.l,
+	backgroundColor: theme.colors.background.default,
+	'&>div>span:nth-child(1)': {
+		color: theme.colors.background.light,
+		marginRight: theme.sizes.gap.s,
+	},
+}));
+
 const Container = styled.div`
 	display: flex;
-	justify-content: space-between;
+	font-size: ${({ theme }) => theme.sizes.font.l};
+	background-color: ${({ theme }) => theme.colors.background.dark};
 `;
 
 type Props = {

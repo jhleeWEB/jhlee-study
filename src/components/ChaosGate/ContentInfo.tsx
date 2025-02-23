@@ -2,7 +2,13 @@ import Icon from '@/components/Icon';
 import React from 'react';
 import { styled } from 'styled-components';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div(({ theme }) => ({
+	padding: theme.sizes.gap.s,
+	'&>p:nth-child(1)': {
+		fontSize: theme.sizes.font.m,
+		fontWeight: theme.sizes.font.weight.l,
+	},
+}));
 
 type Props = {
 	name: string;
@@ -11,8 +17,8 @@ type Props = {
 const ContentInfo = ({ name, icon }: Props) => {
 	return (
 		<Wrapper>
-			<div>{name.split('(')[0]}</div>
-			<Icon src={icon} size={12} />
+			<p>{name.split('(')[0]}</p>
+			<Icon src={icon} size={20} />
 		</Wrapper>
 	);
 };
