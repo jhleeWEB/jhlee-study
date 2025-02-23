@@ -43,6 +43,8 @@ const Panel = styled.div(({ theme }) => ({
 		fontSize: theme.sizes.font.l,
 		backgroundColor: theme.colors.background.default,
 		padding: ' 1rem',
+		borderTopLeftRadius: theme.sizes.border.radius.s,
+		borderTopRightRadius: theme.sizes.border.radius.s,
 	},
 }));
 

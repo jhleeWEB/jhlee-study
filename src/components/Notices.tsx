@@ -8,9 +8,11 @@ import cluster from '@/utils/cluster';
 const Wrapper = styled.div(({ theme }) => ({
 	display: 'flex',
 	flexDirection: 'column',
-	maxHeight: '400px',
-	minHeight: '340px',
+	maxHeight: '366.5px',
+	minHeight: '366.5px',
 	overflow: 'auto',
+	borderBottomRightRadius: theme.sizes.gap.s,
+	borderBottomLeftRadius: theme.sizes.gap.s,
 }));
 
 const Item = styled(NavLink)(({ theme }) => ({
