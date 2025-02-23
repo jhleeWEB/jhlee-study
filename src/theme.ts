@@ -19,6 +19,7 @@ const colors = {
 
 const sizes = {
 	gap: {
+		xs: '0.25rem',
 		s: '1rem',
 		m: '2rem',
 		l: '3rem',
@@ -29,7 +30,7 @@ const sizes = {
 		l: 'screen and (max-width: 1024px)',
 	},
 	font: {
-		s: '1rem',
+		s: '1.25rem',
 		m: '1.5rem',
 		l: '2rem',
 		weight: {
