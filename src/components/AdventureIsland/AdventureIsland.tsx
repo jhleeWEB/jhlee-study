@@ -1,7 +1,7 @@
 import { CalendarResponse, Item } from '@/apis/api';
 import useGameContents from '@/hooks/useGameContents';
 import useTimer from '@/hooks/useTimer';
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import { styled } from 'styled-components';
 import Island from './Island';
 import dayjs from 'dayjs';
@@ -33,19 +33,22 @@ type Props = {
 
 const AdventureIsland = ({ contents }: Props) => {
 	const limitedIslands = useGameContents(contents, '모험 섬');
-	const remainingTime = useTimer(limitedIslands[0].nextTime);
-	const { nextTime } = limitedIslands[0];
+	const remainingTime = useTimer(limitedIslands[0]?.nextTime);
 
 	return (
 		<Wrapper>
 			<Title>
 				<span>모험 섬</span>
 				<div>
-					<span>{`${dayjs(nextTime).format('HH:mm:ss') || '00:00:00'}`}</span>
+					<span>{`${
+						dayjs(limitedIslands[0]?.nextTime).format('HH:mm:ss') || '00:00:00'
+					}`}</span>
 					<span>{`${remainingTime || '00:00:00'}`}</span>
 				</div>
 			</Title>
+
 			<Container>
+				{limitedIslands.length == 0 && <div>일정이 없습니다.</div>}
 				{limitedIslands.map(({ limitedRewards, icon, name, rewards }, i) => (
 					<Island
 						key={name}
