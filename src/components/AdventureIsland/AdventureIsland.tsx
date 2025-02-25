@@ -1,10 +1,9 @@
 import { CalendarResponse, Item } from '@/apis/api';
 import useGameContents from '@/hooks/useGameContents';
-import useTimer from '@/hooks/useTimer';
-import React, { useDebugValue } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Island from './Island';
-import dayjs from 'dayjs';
+import EventTimer from '../EventTimer';
 
 const Wrapper = styled.div(({ theme }) => ({
 	padding: theme.sizes.gap.s,
@@ -17,10 +16,6 @@ const Title = styled.div(({ theme }) => ({
 	padding: theme.sizes.gap.s,
 	fontSize: theme.sizes.font.m,
 	fontWeight: theme.sizes.font.weight.l,
-	'&>div>span:nth-child(1)': {
-		color: theme.colors.font.dark,
-		marginRight: theme.sizes.gap.s,
-	},
 }));
 
 const Container = styled.div`
@@ -33,20 +28,11 @@ type Props = {
 
 const AdventureIsland = ({ contents }: Props) => {
 	const islandContents = useGameContents(contents, '모험 섬');
-	const remainingTime = useTimer(islandContents.upComingEventInfo?.eventTime);
-
 	return (
 		<Wrapper>
 			<Title>
 				<span>모험 섬</span>
-				<div>
-					<span>{`${
-						dayjs(islandContents.upComingEventInfo.eventTime).format(
-							'HH:mm:ss'
-						) || '00:00:00'
-					}`}</span>
-					<span>{`${remainingTime || '00:00:00'}`}</span>
-				</div>
+				<EventTimer eventTime={islandContents.upComingEventInfo.eventTime} />
 			</Title>
 
 			<Container>
