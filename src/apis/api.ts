@@ -5,14 +5,100 @@ async function getSiblings(characterName: string) {
 	return res.data;
 }
 
-export type CharacterDetails = {};
+export type CharacterDetails = {
+	characterImage: string;
+	expeditionLevel: number;
+	pvpGradeName: string;
+	townLevel: number;
+	townName: string;
+	title: string;
+	buildMemberGrade: string | null;
+};
 async function getDetails(characterName?: string) {
 	const res = await axios.get(`/armories/characters/${characterName}`);
 	return res;
 }
-async function getStats(characterName: string) {
-	const res = await axios.get(`armories/characters/${characterName}/profiles`);
-	return res;
+
+export type CharacterProfile = {
+	characterImage: string;
+	expeditionLevel: number;
+	pvpGradeName: string;
+	townLevel: number;
+	townName: string;
+	title: string;
+	guildMemberGrade: string | null;
+	guildName: string | null;
+	usingSkillPount: number;
+	totalSkillPoint: number;
+	serverName: string;
+	characterName: string;
+	characterClassName: string;
+	characterLevel: number;
+	itemAvgLevel: string;
+	itemMaxLevel: string;
+	stats: CharacterStat[];
+	tendencies: CharacterTendency[];
+};
+export type CharacterTendency = {
+	type: string;
+	point: number;
+	maxPoint: number;
+};
+export type CharacterStat = {
+	type: string;
+	value: string;
+	tooltips: string[];
+};
+
+type CharacterProfilesResponse = {
+	CharacterImage: string;
+	ExpeditionLevel: number;
+	PvpGradeName: string;
+	TownLevel: number;
+	TownName: string;
+	Title: string;
+	GuildMemberGrade: string | null;
+	GuildName: string | null;
+	UsingSkillPoint: number;
+	TotalSkillPoint: number;
+	Stats: {
+		Type: string;
+		Value: number;
+		Tooltip: string[];
+	}[];
+	Tendencies: { Type: string; Point: number; MaxPoint: number }[];
+	ServerName: string;
+	CharacterName: string;
+	CharacterLevel: number;
+	CharacterClassName: string;
+	ItemAvgLevel: string;
+	ItemMaxLevel: string;
+};
+async function getProfiles(characterName?: string): Promise<CharacterProfile> {
+	const res = await axios.get<CharacterProfilesResponse>(
+		`armories/characters/${characterName}/profiles`
+	);
+
+	return {
+		characterImage: res.data.CharacterImage,
+		expeditionLevel: res.data.ExpeditionLevel,
+		pvpGradeName: res.data.PvpGradeName,
+		townLevel: res.data.TownLevel,
+		townName: res.data.TownName,
+		title: res.data.Title,
+		guildMemberGrade: res.data.GuildMemberGrade,
+		guildName: res.data.GuildName,
+		usingSkillPount: res.data.UsingSkillPoint,
+		totalSkillPoint: res.data.TotalSkillPoint,
+		serverName: res.data.ServerName,
+		characterName: res.data.CharacterName,
+		characterClassName: res.data.CharacterClassName,
+		characterLevel: res.data.CharacterLevel,
+		itemAvgLevel: res.data.ItemAvgLevel,
+		itemMaxLevel: res.data.ItemMaxLevel,
+		stats: res.data.Stats as any,
+		tendencies: res.data.Tendencies as any,
+	};
 }
 async function getEquipment(characterName: string) {
 	const res = await axios.get(`armories/characters/${characterName}/equipment`);
@@ -129,7 +215,7 @@ const apis = {
 			getEquipment,
 			getGems,
 			getDetails,
-			getStats,
+			getProfiles,
 		},
 	},
 	news: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
 import { PATHNAME } from '@global/constants';
-import CharacterDetail from './components/Character/Character';
+import Characters from './components/Characters/Characters';
 
 const Routers = () => {
 	return (
@@ -15,10 +15,7 @@ const Routers = () => {
 				<Route path=':guildId' />
 			</Route>
 			<Route path={PATHNAME.BISCHECK + ':playerId'} element={<div />} />
-			<Route
-				path={PATHNAME.CHARACTER + ':playerId'}
-				element={<CharacterDetail />}
-			/>
+			<Route path={PATHNAME.CHARACTER + ':playerId'} element={<Characters />} />
 		</Routes>
 	);
 };
