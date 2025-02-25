@@ -5,63 +5,68 @@ import React, { useDebugValue } from 'react';
 import { styled } from 'styled-components';
 import dayjs from 'dayjs';
 import Icon from '../Icon';
+import { IItem } from '@/theme';
 
-const Wrapper = styled.div`
-	width: 100%;
-	padding: 1rem;
-`;
+const Wrapper = styled.div(({ theme }) => ({
+	width: '100%',
+	padding: theme.sizes.gap.s,
+	fontSize: theme.sizes.font.m,
+	background: theme.colors.background.dark,
+}));
 
-const Title = styled.div`
-	display: flex;
-	justify-content: space-between;
-	padding: 1rem;
-	font-size: ${({ theme }) => theme.fontSize.lg};
-	font-weight: bold;
-	background-color: ${({ theme }) => theme.bgColor.primary};
-	& > div > span:nth-child(1) {
-		color: grey;
-		margin-right: 1rem;
-	}
-`;
+const Title = styled.div(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	padding: theme.sizes.gap.s,
+	fontSize: theme.sizes.font.l,
+	fontWeight: theme.sizes.font.weight.l,
+	backgroundColor: theme.colors.background.default,
+	'&>div>span:nth-child(1)': {
+		color: theme.colors.background.light,
+		marginRight: theme.sizes.gap.s,
+	},
+}));
+
+const FieldBossInfo = styled.div(({ theme }) => ({
+	padding: theme.sizes.gap.s,
+	'&>p:nth-child(1)': {
+		fontSize: theme.sizes.font.m,
+		fontWeight: theme.sizes.font.weight.l,
+	},
+	'&>p:nth-child(2)': {
+		fontSize: theme.sizes.font.s,
+		fontWeight: theme.sizes.font.weight.l,
+		color: theme.colors.font.dark,
+	},
+}));
 
 const Container = styled.div`
 	display: flex;
-	font-size: ${({ theme }) => theme.fontSize.lg};
-	background-color: ${({ theme }) => theme.bgColor.primary};
+	font-size: ${({ theme }) => theme.sizes.font.l};
+	background-color: ${({ theme }) => theme.colors.background.dark};
 `;
 
-const Rewards = styled.div`
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	font-size: ${({ theme }) => theme.fontSize.md};
-`;
+const Rewards = styled.div(({ theme }) => ({
+	display: 'grid',
+	gridTemplateColumns: 'repeat(4, 1fr)',
+	fontSize: theme.sizes.font.s,
+	fontWeight: theme.sizes.font.weight.l,
+}));
 
 type RewardProps = {
 	$grade: string;
 };
-const Reward = styled.div<RewardProps>`
-	display: flex;
-	align-items: center;
-	color: ${(props) => {
-		switch (props.$grade) {
-			case '유물':
-				return 'orange';
-			case '전설':
-				return 'yellow';
-			case '영웅':
-				return 'purple';
-			case '희귀':
-				return 'blue';
-			case '고급':
-				return 'green';
-			default:
-				return 'white';
-		}
-	}};
-	& > img {
-		margin-right: 0.5rem;
-	}
-`;
+const Reward = styled.div<RewardProps>(({ theme, $grade }) => {
+	const itemColor: IItem = theme.colors.item;
+	return {
+		display: 'flex',
+		alignItems: 'center',
+		color: itemColor[$grade],
+		'&>img': {
+			marginRight: theme.sizes.gap.xs,
+		},
+	};
+});
 
 const NoEvent = styled.div``;
 
@@ -71,7 +76,7 @@ type Props = {
 
 const FieldBoss = (props: Props) => {
 	const fieldBoss = useGameContents(props.contents, '필드보스');
-	const { name, icon, minLevel, rewards, nextTime } = fieldBoss[0];
+	const { name, icon, minLevel, rewards, nextTime, location } = fieldBoss[0];
 	const eventDate = dayjs(nextTime);
 
 	const remainingTime = useTimer(nextTime);
@@ -89,15 +94,15 @@ const FieldBoss = (props: Props) => {
 				<NoEvent>현재 진행중인 필드보스 이벤트가 없습니다.</NoEvent>
 			) : (
 				<Container>
-					<div>
-						<p>{name}</p>
+					<FieldBossInfo>
+						<p>{name + ':' + location}</p>
 						<p>{minLevel}</p>
-						<img src={icon} />
-					</div>
+						<Icon src={icon} size={20} />
+					</FieldBossInfo>
 					<Rewards>
 						{rewards.map((n, i) => (
 							<Reward key={n.Name + i} $grade={n.Grade}>
-								<Icon src={n.Icon} />
+								<Icon src={n.Icon} size={2} />
 								<span>{n.Name}</span>
 							</Reward>
 						))}

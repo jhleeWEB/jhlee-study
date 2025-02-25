@@ -1,6 +1,6 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter } from 'react-router';
 import Routers from './Routers';
 import Layout from './pages/Layout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

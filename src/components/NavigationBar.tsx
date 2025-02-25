@@ -3,35 +3,37 @@ import { styled } from 'styled-components';
 import { useLocation, NavLink } from 'react-router';
 import { PATHNAME } from '@/global/constants';
 
-const Wrapper = styled.section`
-	display: flex;
-	padding: 1rem;
-	background-color: ${({ theme }) => theme.bgColor.primary};
-	justify-content: space-between;
-`;
-
+const Wrapper = styled.section(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	padding: theme.sizes.gap.s,
+	backgroundColor: theme.colors.background.default,
+}));
 const Container = styled.div``;
 
 type NavLinkProps = {
 	$isSelected?: boolean;
 };
 
-const NavButton = styled(NavLink)<NavLinkProps>`
-	text-decoration: none;
-	border: 0;
-	background: transparent;
-	color: white;
-	font-size: ${(props) => props.theme.fontSize.lg};
-	font-weight: bold;
-	padding: 1rem;
-	border-bottom: ${(props: NavLinkProps) =>
-		props.$isSelected ? 'thick solid white' : 'thick solid transparent'};
-
-	&:hover {
-		background-color: gray;
-		color: white;
-	}
-`;
+const NavButton = styled(NavLink)<NavLinkProps>(({ theme, $isSelected }) => {
+	const { sizes, colors } = theme;
+	return {
+		textDecoration: 'none',
+		border: 'none',
+		background: 'transparent',
+		color: colors.font.default,
+		fontSize: sizes.font.m,
+		fontWeight: sizes.font.weight.l,
+		padding: sizes.gap.s,
+		borderBottom: $isSelected
+			? `thick solid ${colors.highLight.default}`
+			: 'thick solid transparent',
+		'&:hover': {
+			backgroundColor: colors.background.light,
+			color: colors.font.default,
+		},
+	};
+});
 
 const NavigationBar = () => {
 	const location = useLocation();

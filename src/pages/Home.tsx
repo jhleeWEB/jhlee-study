@@ -28,33 +28,37 @@ const MainContainer = styled.div`
 	text-align: center;
 `;
 
-const PanelContainer = styled.section`
-	display: grid;
-	grid-gap: 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	padding: 3rem;
-	justify-items: center;
-`;
+const PanelContainer = styled.section(({ theme }) => ({
+	display: 'grid',
+	gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+	justifyItems: 'center',
+	gridGap: theme.sizes.gap.s,
+	padding: theme.sizes.gap.l,
+}));
 
-const Panel = styled.div`
-	width: 100%;
-	& > header {
-		font-weight: bold;
-		font-size: ${({ theme }) => theme.fontSize.lg};
-		background-color: ${({ theme }) => theme.bgColor.primary};
-		padding: 1rem;
-	}
-`;
+const Panel = styled.div(({ theme }) => ({
+	width: '100%',
+	'&>header': {
+		fontWeight: theme.sizes.font.weight.l,
+		fontSize: theme.sizes.font.l,
+		backgroundColor: theme.colors.background.default,
+		padding: theme.sizes.gap.s,
+		borderTopLeftRadius: theme.sizes.border.radius.s,
+		borderTopRightRadius: theme.sizes.border.radius.s,
+	},
+}));
 
-const CalendarContainer = styled.div`
-	padding: 3rem;
-	& > header {
-		font-weight: bold;
-		font-size: ${({ theme }) => theme.fontSize.lg};
-		background-color: ${({ theme }) => theme.bgColor.primary};
-		padding: 1rem;
-	}
-`;
+const CalendarContainer = styled.div(({ theme }) => ({
+	padding: theme.sizes.gap.l,
+	'&>header': {
+		borderTopLeftRadius: theme.sizes.border.radius.s,
+		borderTopRightRadius: theme.sizes.border.radius.s,
+		fontWeight: theme.sizes.font.weight.l,
+		fontSize: theme.sizes.font.l,
+		backgroundColor: theme.colors.background.default,
+		padding: theme.sizes.gap.s,
+	},
+}));
 
 const Home = () => {
 	return (

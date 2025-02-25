@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import apis, { CalendarResponse } from '@/apis/api';
-import { styled } from 'styled-components';
 import AdventureIsland from './AdventureIsland/AdventureIsland';
 import FieldBoss from './FieldBoss/FieldBoss';
 import ChaosGate from './ChaosGate/ChaosGate';
-
-const Wrapper = styled.div``;
 
 const Calendar = () => {
 	const { data } = useQuery<any, any, CalendarResponse[]>({
@@ -31,13 +28,13 @@ const Calendar = () => {
 	}, [data]);
 
 	return (
-		<Wrapper>
+		<>
 			{adventureIsland && adventureIsland.length > 0 && (
 				<AdventureIsland contents={adventureIsland} />
 			)}
 			{fieldBoss && fieldBoss.length > 0 && <FieldBoss contents={fieldBoss} />}
 			{chaosGate && chaosGate.length > 0 && <ChaosGate contents={chaosGate} />}
-		</Wrapper>
+		</>
 	);
 };
 
