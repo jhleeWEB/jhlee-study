@@ -5,7 +5,7 @@ export const PATHNAME = {
 	STATISTICS: '/statistics',
 	COLLECTIBLES: '/collectibles',
 	BISCHECK: '/bischeck',
-	CHARACTER: '/character',
+	CHARACTER: '/character/',
 };
 
 export const SUBNAME = {

@@ -2,10 +2,11 @@ import axios from '@apis/axios';
 
 async function getSiblings(characterName: string) {
 	const res = await axios.get(`/characters/${characterName}/siblings`);
-	return res;
+	return res.data;
 }
 
-async function getProfileInfo(characterName: string) {
+export type CharacterDetails = {};
+async function getDetails(characterName?: string) {
 	const res = await axios.get(`/armories/characters/${characterName}`);
 	return res;
 }
@@ -127,7 +128,7 @@ const apis = {
 			getEngravings,
 			getEquipment,
 			getGems,
-			getProfileInfo,
+			getDetails,
 			getStats,
 		},
 	},

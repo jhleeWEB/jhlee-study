@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
 import { PATHNAME } from '@global/constants';
+import CharacterDetail from './components/Character/Character';
 
 const Routers = () => {
 	return (
@@ -11,10 +12,13 @@ const Routers = () => {
 			<Route path={PATHNAME.COLLECTIBLES} element={<div />} />
 			<Route path={PATHNAME.STATISTICS} element={<div />} />
 			<Route path={PATHNAME.GUILDS} element={<div />}>
-				<Route path=':guildid' />
+				<Route path=':guildId' />
 			</Route>
-			<Route path={PATHNAME.BISCHECK + ':playerid'} element={<div />} />
-			<Route path={PATHNAME.CHARACTER + ':playerid'} element={<div />} />
+			<Route path={PATHNAME.BISCHECK + ':playerId'} element={<div />} />
+			<Route
+				path={PATHNAME.CHARACTER + ':playerId'}
+				element={<CharacterDetail />}
+			/>
 		</Routes>
 	);
 };

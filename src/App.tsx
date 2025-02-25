@@ -14,7 +14,7 @@ function App() {
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<RecoilRoot>
-					<BrowserRouter>
+					<BrowserRouter basename='/'>
 						<ThemeProvider theme={theme}>
 							<Layout>
 								<Routers />

@@ -1,12 +1,14 @@
 import { CharacterInfo } from '@/types/type';
 import React from 'react';
+import { Link } from 'react-router';
 import { styled } from 'styled-components';
 
 const Wrapper = styled.div`
 	background-color: grey;
+	position: absolute;
 `;
 
-const Item = styled.div`
+const Item = styled(Link)`
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
@@ -25,7 +27,10 @@ const CharacterList = ({ characters }: Props) => {
 			{characters &&
 				characters.map((character) => {
 					return (
-						<Item key={`${character.CharacterName}`}>
+						<Item
+							key={`${character.CharacterName}`}
+							to={`/character/${character.CharacterName}`}
+						>
 							<div>{character.CharacterName}</div>
 							<div>{character.ServerName}</div>
 							<div>{character.CharacterClassName}</div>
