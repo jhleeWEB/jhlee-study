@@ -100,9 +100,39 @@ async function getProfiles(characterName?: string): Promise<CharacterProfile> {
 		tendencies: res.data.Tendencies as any,
 	};
 }
-async function getEquipment(characterName: string) {
-	const res = await axios.get(`armories/characters/${characterName}/equipment`);
-	return res;
+
+type CharacterEquipmentResponse = {
+	Type: string;
+	Name: string;
+	Icon: string;
+	Grade: string;
+	Tooltip: string;
+}[];
+export type CharacterEquipment = {
+	type: string;
+	name: string;
+	icon: string;
+	grade: string;
+	tooltip: string;
+};
+
+export const EquipmentType = ['투구', '상의', '무기', '하의', '장갑', '어깨'];
+
+export const AccssoryType = ['귀걸이', '반지', '어빌리티 스톤', '팔찌'];
+
+async function getEquipment(
+	characterName?: string
+): Promise<CharacterEquipment[]> {
+	const res = await axios.get<CharacterEquipmentResponse>(
+		`armories/characters/${characterName}/equipment`
+	);
+	return res.data.map((n) => ({
+		type: n.Type,
+		name: n.Name,
+		icon: n.Icon,
+		grade: n.Grade,
+		tooltip: n.Tooltip,
+	}));
 }
 async function getAvatars(characterName: string) {
 	const res = await axios.get(`armories/characters/${characterName}/avatars`);

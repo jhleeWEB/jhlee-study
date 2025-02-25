@@ -3,16 +3,19 @@
 		"prefix": "rfc",
 		"body": [
 			"import React from \"react\"",
+			"import { styled } from \"styled-components\"",
 			"",
-			"const ${1:name} = () => {",
+			"const Wrapper = styled.div(({}) => ({}))",
+			"",
+			"const ${TM_FILENAME_BASE} = () => {",
 			"  return (",
-			"    <div>",
+			"    <Wrapper>",
 			"      $2",
-			"    </div>",
+			"    </Wrapper>",
 			"  )",
 			"};",
 			"",
-			"export default ${1:name};",
+			"export default ${TM_FILENAME_BASE};",
 			""
 		],
 		"description": "React Functional Component"

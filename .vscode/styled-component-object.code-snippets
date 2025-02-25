@@ -1,0 +1,7 @@
+{
+	"Styled Component Object": {
+		"prefix": "sco",
+		"body": ["const ${1:name} = styled.${2:tag}(({ theme }) => ({}))"],
+		"description": "Styled Component Object"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"React Custom Hook": {
+		"prefix": "rch",
+		"body": [
+			"import { useState } from \"react\"",
+			"",
+			"",
+			"const ${TM_FILENAME_BASE} = () => {",
+      " const [state, setState] = useState()"
+			"",
+			"}"
+			"export default ${TM_FILENAME_BASE};",
+			""
+		],
+		"description": "React Custom Hook"
+	}
+}
