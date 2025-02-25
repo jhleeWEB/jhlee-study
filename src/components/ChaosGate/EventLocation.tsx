@@ -22,21 +22,18 @@ const Location = styled.div(({ theme }) => ({
 }));
 
 type Props = {
-	locationInfo: [string, string][];
+	location: string;
 };
 
-const EventLocation = ({ locationInfo }: Props) => {
+const EventLocation = ({ location }: Props) => {
 	return (
 		<Wrapper>
 			<p>게이트 장소</p>
 
 			<LocationContainer>
-				{locationInfo.map((n) => (
-					<Location key={n[0] + n[1]}>
-						<span>{n[0]}</span>
-						<span>{n[1]}</span>
-					</Location>
-				))}
+				<Location>
+					<span>{location}</span>
+				</Location>
 			</LocationContainer>
 		</Wrapper>
 	);

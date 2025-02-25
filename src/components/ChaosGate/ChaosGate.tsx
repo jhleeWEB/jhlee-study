@@ -8,9 +8,9 @@ import dayjs from 'dayjs';
 import ContentInfo from './ContentInfo';
 import EventLocation from './EventLocation';
 import Rewards from './Rewards';
+import EventTimer from '../EventTimer';
 
 const Wrapper = styled.div(({ theme }) => ({
-	width: '100%',
 	padding: theme.sizes.gap.s,
 	fontSize: theme.sizes.font.m,
 	background: theme.colors.background.dark,
@@ -29,11 +29,12 @@ const Title = styled.div(({ theme }) => ({
 	},
 }));
 
-const Container = styled.div`
-	display: flex;
-	font-size: ${({ theme }) => theme.sizes.font.l};
-	background-color: ${({ theme }) => theme.colors.background.dark};
-`;
+const Container = styled.div(({ theme }) => ({
+	display: 'grid',
+	gridTemplateColumns: 'repeat(4, 1fr)',
+	fontSize: theme.sizes.font.l,
+	backgroundColor: theme.colors.background.dark,
+}));
 
 type Props = {
 	contents: CalendarResponse[];
@@ -41,28 +42,26 @@ type Props = {
 
 const ChaosGate = ({ contents }: Props) => {
 	const content = useGameContents(contents, '카오스게이트');
-	const timer = useTimer();
 	return (
 		<Wrapper>
-			{/* <Title>
+			<Title>
 				<span>카오스 게이트</span>
-				<div>
-					<span>{`${
-						dayjs(content[0].nextTime).format('HH:mm:ss') || '00:00:00'
-					}`}</span>
-					<span>{timer || '00:00:00'}</span>
-				</div>
+				<EventTimer eventTime={content.upComingEventInfo.eventTime} />
 			</Title>
 			<Container>
-				<ContentInfo name={content[0].name} icon={content[0].icon} />
-				<EventLocation
-					locationInfo={content.map((n) => [
-						n.name.split('(')[1].replace(')', ''),
-						n.location,
-					])}
-				/>
-				<Rewards rewards={content[0].rewards} />
-			</Container> */}
+				{content.events.map((event) => (
+					<>
+						<ContentInfo
+							startTimes={event.StartTimes}
+							level={event.MinItemLevel}
+							name={event.ContentsName}
+							icon={event.ContentsIcon}
+						/>
+						{/* <EventLocation location={event.Location} />
+						<Rewards rewards={event.RewardItems} /> */}
+					</>
+				))}
+			</Container>
 		</Wrapper>
 	);
 };

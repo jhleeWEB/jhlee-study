@@ -1,5 +1,5 @@
 import React from 'react';
-import dayjs from 'dayjs';
+import { Dayjs } from 'dayjs';
 import useTimer from '@/hooks/useTimer';
 import { styled } from 'styled-components';
 
@@ -12,13 +12,13 @@ const Wrapper = styled.div(({ theme }) => ({
 	},
 }));
 type Props = {
-	eventTime?: Date;
+	eventTime?: Dayjs;
 };
 const EventTimer = ({ eventTime }: Props) => {
 	const remainingTime = useTimer(eventTime);
 	return (
 		<Wrapper>
-			<span>{`${dayjs(eventTime).format('HH:mm:ss') || '00:00:00'}`}</span>
+			<span>{`${eventTime?.format('HH:mm:ss') || '00:00:00'}`}</span>
 			<span>{`${remainingTime || '00:00:00'}`}</span>
 		</Wrapper>
 	);

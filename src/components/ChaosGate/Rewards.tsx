@@ -1,4 +1,4 @@
-import { Item } from '@/apis/api';
+import { Item, RewardItems } from '@/apis/api';
 import React from 'react';
 import { styled } from 'styled-components';
 import Icon from '../Icon';
@@ -39,7 +39,7 @@ const Reward = styled.div<RewardProps>`
 `;
 
 type Props = {
-	rewards: Item[];
+	rewards: RewardItems[];
 };
 
 const Rewards = ({ rewards }: Props) => {
@@ -49,12 +49,12 @@ const Rewards = ({ rewards }: Props) => {
 				<p>보상</p>
 			</div>
 			<RewardsContainer>
-				{rewards.map((n, i) => (
+				{/* {rewards.map((n, i) => (
 					<Reward key={n.Name + i} $grade={n.Grade}>
 						<Icon src={n.Icon} size={2} />
 						{n.Name}
 					</Reward>
-				))}
+				))} */}
 			</RewardsContainer>
 		</Wrapper>
 	);

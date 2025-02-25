@@ -1,10 +1,10 @@
 import { CalendarResponse, CategoryName, Item } from '@/apis/api';
 import { useState } from 'react';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 export type ReturnType = {
 	upComingEventInfo: {
-		eventTime: Date | undefined;
+		eventTime: Dayjs | undefined;
 	};
 	events: CalendarResponse[] | [];
 };
@@ -17,15 +17,14 @@ const useGameContents = (
 		let events = [];
 		for (let content of contents) {
 			const { StartTimes } = content;
-			let isUpComing = false;
-			for (let time of StartTimes) {
-				let eventTime = dayjs(time);
-				if (dayjs().isSame(eventTime, 'days')) {
-					isUpComing = true;
-					break;
+			const startTimes = StartTimes.filter((time) => {
+				if (dayjs(time).isAfter(dayjs())) {
+					return time;
 				}
-			}
-			if (isUpComing) {
+			});
+
+			if (startTimes.length > 0) {
+				content.StartTimes = startTimes;
 				events.push(content);
 			}
 		}
@@ -36,16 +35,14 @@ const useGameContents = (
 		let nextEventTime = '';
 		for (let event of events) {
 			const { StartTimes } = event;
-			let temp = Infinity;
-			for (let time of StartTimes) {
-				let eventTime = dayjs(time);
-				if (dayjs().diff(eventTime, 'hours') < temp) {
-					temp = dayjs().diff(eventTime, 'hours');
-					nextEventTime = time;
+			const startTimes = StartTimes.filter((time) => {
+				if (dayjs(time).isAfter(dayjs())) {
+					return time;
 				}
-			}
+			});
+			event.StartTimes = startTimes;
 		}
-		return new Date(nextEventTime);
+		return dayjs(nextEventTime);
 	}
 
 	const [content] = useState<ReturnType>(() => {
@@ -56,10 +53,9 @@ const useGameContents = (
 				const islandEvents = findActiveEvents();
 
 				if (islandEvents.length > 0) {
-					const nextEventTime = findNextEvent(islandEvents);
 					return {
 						upComingEventInfo: {
-							eventTime: nextEventTime,
+							eventTime: dayjs(islandEvents[0].StartTimes[0]),
 						},
 						events: islandEvents,
 					};
@@ -75,10 +71,9 @@ const useGameContents = (
 				const fieldBossEvents = findActiveEvents();
 
 				if (fieldBossEvents.length > 0) {
-					const nextEventTime = findNextEvent(fieldBossEvents);
 					return {
 						upComingEventInfo: {
-							eventTime: nextEventTime,
+							eventTime: dayjs(fieldBossEvents[0].StartTimes[0]),
 						},
 						events: fieldBossEvents,
 					};
@@ -94,10 +89,9 @@ const useGameContents = (
 				const chaosEvents = findActiveEvents();
 
 				if (chaosEvents.length > 0) {
-					const nextEventTime = findNextEvent(chaosEvents);
 					return {
 						upComingEventInfo: {
-							eventTime: nextEventTime,
+							eventTime: dayjs(chaosEvents[0].StartTimes[0]),
 						},
 						events: chaosEvents,
 					};

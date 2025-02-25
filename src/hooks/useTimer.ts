@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(utc);
 dayjs.extend(duration);
 
-const useTimer = (targetDate?: Date) => {
+const useTimer = (targetDate?: Dayjs) => {
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
@@ -16,9 +16,8 @@ const useTimer = (targetDate?: Date) => {
 		if (targetDate) {
 			interval.current = setInterval(() => {
 				const currentTime = new Date().getTime();
-				const nextTime = targetDate.getTime();
 				const diff = dayjs
-					.duration(dayjs(nextTime).diff(currentTime))
+					.duration(dayjs(targetDate).diff(currentTime))
 					.format('HH:mm:ss');
 				setRemainingTime(diff);
 			}, 1000);
