@@ -41,10 +41,10 @@ type Props = {
 
 const ChaosGate = ({ contents }: Props) => {
 	const content = useGameContents(contents, '카오스게이트');
-	const timer = useTimer(content[0].nextTime);
+	const timer = useTimer();
 	return (
 		<Wrapper>
-			<Title>
+			{/* <Title>
 				<span>카오스 게이트</span>
 				<div>
 					<span>{`${
@@ -62,7 +62,7 @@ const ChaosGate = ({ contents }: Props) => {
 					])}
 				/>
 				<Rewards rewards={content[0].rewards} />
-			</Container>
+			</Container> */}
 		</Wrapper>
 	);
 };

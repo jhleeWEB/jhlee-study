@@ -1,105 +1,121 @@
 import { CalendarResponse, CategoryName, Item } from '@/apis/api';
 import { useState } from 'react';
+import dayjs from 'dayjs';
 
-export type Content = {
-	name: string;
-	icon: string;
-	limitedRewards: Item[] | [];
-	rewards: Item[];
-	nextTime: Date;
-	minLevel: number;
-	location: string;
+export type ReturnType = {
+	upComingEventInfo: {
+		eventTime: Date | undefined;
+	};
+	events: CalendarResponse[] | [];
 };
 
 const useGameContents = (
 	contents: CalendarResponse[],
 	category: CategoryName
 ) => {
-	const [content] = useState<Content[]>(() => {
+	function findActiveEvents(): CalendarResponse[] {
+		let events = [];
+		for (let content of contents) {
+			const { StartTimes } = content;
+			let isUpComing = false;
+			for (let time of StartTimes) {
+				let eventTime = dayjs(time);
+				if (dayjs().isSame(eventTime, 'days')) {
+					isUpComing = true;
+					break;
+				}
+			}
+			if (isUpComing) {
+				events.push(content);
+			}
+		}
+		return events;
+	}
+
+	function findNextEvent(events: CalendarResponse[]) {
+		let nextEventTime = '';
+		for (let event of events) {
+			const { StartTimes } = event;
+			let temp = Infinity;
+			for (let time of StartTimes) {
+				let eventTime = dayjs(time);
+				if (dayjs().diff(eventTime, 'hours') < temp) {
+					temp = dayjs().diff(eventTime, 'hours');
+					nextEventTime = time;
+				}
+			}
+		}
+		return new Date(nextEventTime);
+	}
+
+	const [content] = useState<ReturnType>(() => {
 		const today = new Date();
 
 		switch (category) {
 			case '모험 섬':
-				const events = contents.filter(
-					(n) => today.getDay() == new Date(n.StartTimes[0]).getDay()
-				);
-				const islandContent = events.map((event) => {
-					const normalRewards = event.RewardItems[0].Items.filter(
-						(n) => !n.StartTimes
-					);
-					const limitedRewards = event.RewardItems[0].Items.filter(
-						(n) => n.StartTimes
-					);
+				const islandEvents = findActiveEvents();
 
-					const currentTime = today.getTime();
-					let remain = Infinity;
-					let upComingTime = '';
-					for (let time of event.StartTimes) {
-						const nextTime = new Date(time).getTime();
-						if (currentTime < nextTime && nextTime - currentTime < remain) {
-							remain = nextTime - currentTime;
-							upComingTime = time;
-						}
-					}
+				if (islandEvents.length > 0) {
+					const nextEventTime = findNextEvent(islandEvents);
 					return {
-						name: event.ContentsName,
-						limitedRewards: limitedRewards,
-						rewards: normalRewards,
-						icon: event.ContentsIcon,
-						nextTime: new Date(upComingTime),
-						minLevel: event.MinItemLevel,
-						location: event.Location,
+						upComingEventInfo: {
+							eventTime: nextEventTime,
+						},
+						events: islandEvents,
 					};
-				});
-				return islandContent;
-			case '필드보스':
-				const currentTime = today.getTime();
-				let remain = Infinity;
-				let upComingTime = '';
-				for (let time of contents[0].StartTimes) {
-					const nextTime = new Date(time).getTime();
-					if (currentTime < nextTime && nextTime - currentTime < remain) {
-						remain = nextTime - currentTime;
-						upComingTime = time;
-					}
+				} else {
+					return {
+						upComingEventInfo: {
+							eventTime: undefined,
+						},
+						events: [],
+					};
 				}
-				return [
-					{
-						name: contents[0].ContentsName,
-						limitedRewards: [],
-						rewards: contents[0].RewardItems[0].Items,
-						icon: contents[0].ContentsIcon,
-						nextTime: new Date(upComingTime),
-						minLevel: contents[0].MinItemLevel,
-						location: contents[0].Location,
-					},
-				];
+			case '필드보스':
+				const fieldBossEvents = findActiveEvents();
 
-			case '카오스게이트':
-				const chaosContent = contents.map((event) => {
-					const currentTime = today.getTime();
-					let remain = Infinity;
-					let upComingTime = '';
-					for (let time of event.StartTimes) {
-						const nextTime = new Date(time).getTime();
-						if (currentTime < nextTime && nextTime - currentTime < remain) {
-							remain = nextTime - currentTime;
-							upComingTime = time;
-						}
-					}
+				if (fieldBossEvents.length > 0) {
+					const nextEventTime = findNextEvent(fieldBossEvents);
 					return {
-						name: event.ContentsName,
-						limitedRewards: [],
-						rewards: event.RewardItems[0].Items,
-						icon: event.ContentsIcon,
-						nextTime: new Date(upComingTime),
-						minLevel: event.MinItemLevel,
-						location: event.Location,
+						upComingEventInfo: {
+							eventTime: nextEventTime,
+						},
+						events: fieldBossEvents,
 					};
-				});
-				return chaosContent;
+				} else {
+					return {
+						upComingEventInfo: {
+							eventTime: undefined,
+						},
+						events: [],
+					};
+				}
+			case '카오스게이트':
+				const chaosEvents = findActiveEvents();
+
+				if (chaosEvents.length > 0) {
+					const nextEventTime = findNextEvent(chaosEvents);
+					return {
+						upComingEventInfo: {
+							eventTime: nextEventTime,
+						},
+						events: chaosEvents,
+					};
+				} else {
+					return {
+						upComingEventInfo: {
+							eventTime: undefined,
+						},
+						events: [],
+					};
+				}
 			default:
-				return [];
+				return {
+					upComingEventInfo: {
+						eventTime: undefined,
+					},
+					events: [],
+				};
 		}
 	});
 

@@ -32,8 +32,8 @@ type Props = {
 };
 
 const AdventureIsland = ({ contents }: Props) => {
-	const limitedIslands = useGameContents(contents, '모험 섬');
-	const remainingTime = useTimer(limitedIslands[0]?.nextTime);
+	const islandContents = useGameContents(contents, '모험 섬');
+	const remainingTime = useTimer(islandContents.upComingEventInfo?.eventTime);
 
 	return (
 		<Wrapper>
@@ -41,23 +41,26 @@ const AdventureIsland = ({ contents }: Props) => {
 				<span>모험 섬</span>
 				<div>
 					<span>{`${
-						dayjs(limitedIslands[0]?.nextTime).format('HH:mm:ss') || '00:00:00'
+						dayjs(islandContents.upComingEventInfo.eventTime).format(
+							'HH:mm:ss'
+						) || '00:00:00'
 					}`}</span>
 					<span>{`${remainingTime || '00:00:00'}`}</span>
 				</div>
 			</Title>
 
 			<Container>
-				{limitedIslands.length == 0 && <div>일정이 없습니다.</div>}
-				{limitedIslands.map(({ limitedRewards, icon, name, rewards }, i) => (
-					<Island
-						key={name}
-						icon={icon}
-						name={name}
-						rewards={rewards}
-						limitedRewards={limitedRewards}
-					/>
-				))}
+				{islandContents.events.length == 0 && <div>일정이 없습니다.</div>}
+				{islandContents.events.map(
+					({ ContentsIcon, ContentsName, RewardItems }, i) => (
+						<Island
+							key={ContentsName + i}
+							icon={ContentsIcon}
+							name={ContentsName}
+							rewards={RewardItems}
+						/>
+					)
+				)}
 			</Container>
 		</Wrapper>
 	);

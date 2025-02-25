@@ -1,4 +1,4 @@
-import { Item } from '@/apis/api';
+import { Item, RewardItems } from '@/apis/api';
 import { IItem } from '@/theme';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
@@ -79,12 +79,14 @@ const Reward = styled.div<RewardProps>(({ theme, $grade }) => {
 type Props = {
 	icon: string;
 	name: string;
-	rewards: Item[];
-	limitedRewards: Item[];
+	rewards: RewardItems[];
 };
 
-const Island = ({ icon, name, rewards, limitedRewards }: Props) => {
+const Island = ({ icon, name, rewards }: Props) => {
 	const [showRewards, setShowRewards] = useState(false);
+	const limitedRewards = rewards[0].Items.filter((n) => n.StartTimes);
+	const normalRewards = rewards[0].Items.filter((n) => !n.StartTimes);
+
 	function toggleShowRewards() {
 		setTimeout(() => {
 			setShowRewards(!showRewards);
@@ -108,8 +110,8 @@ const Island = ({ icon, name, rewards, limitedRewards }: Props) => {
 							<PopupWrapper>
 								<div>
 									<p>상시 보상</p>
-									{rewards.map((reward) => (
-										<Reward key={reward.Name} $grade={reward.Grade}>
+									{normalRewards.map((reward, i) => (
+										<Reward key={reward.Name + i} $grade={reward.Grade}>
 											<Icon src={reward.Icon} size={2} />
 											{reward.Name}
 										</Reward>
@@ -117,8 +119,8 @@ const Island = ({ icon, name, rewards, limitedRewards }: Props) => {
 								</div>
 								<div>
 									<p>한정 보상</p>
-									{limitedRewards.map((reward) => (
-										<Reward key={reward.Name} $grade={reward.Grade}>
+									{limitedRewards.map((reward, i) => (
+										<Reward key={reward.Name + i} $grade={reward.Grade}>
 											<Icon src={reward.Icon} size={2} />
 											{reward.Name}
 										</Reward>

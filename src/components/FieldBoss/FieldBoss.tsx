@@ -76,14 +76,14 @@ type Props = {
 
 const FieldBoss = (props: Props) => {
 	const fieldBoss = useGameContents(props.contents, '필드보스');
-	const { name, icon, minLevel, rewards, nextTime, location } = fieldBoss[0];
-	const eventDate = dayjs(nextTime);
-
-	const remainingTime = useTimer(nextTime);
+	// const { name, icon, minLevel, rewards, location, upComingEvent } =
+	// 	fieldBoss[0];
+	// const eventDate = dayjs(upComingEvent?.eventTime);
+	// const remainingTime = useTimer(upComingEvent?.eventTime);
 
 	return (
 		<Wrapper>
-			<Title>
+			{/* <Title>
 				<span>필드 보스</span>
 				<div>
 					<span>{eventDate.format('HH:mm:ss')}</span>
@@ -108,7 +108,7 @@ const FieldBoss = (props: Props) => {
 						))}
 					</Rewards>
 				</Container>
-			)}
+			)} */}
 		</Wrapper>
 	);
 };

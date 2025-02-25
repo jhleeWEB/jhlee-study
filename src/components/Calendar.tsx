@@ -32,8 +32,8 @@ const Calendar = () => {
 			{adventureIsland && adventureIsland.length > 0 && (
 				<AdventureIsland contents={adventureIsland} />
 			)}
-			{fieldBoss && fieldBoss.length > 0 && <FieldBoss contents={fieldBoss} />}
-			{chaosGate && chaosGate.length > 0 && <ChaosGate contents={chaosGate} />}
+			{/* {fieldBoss && fieldBoss.length > 0 && <FieldBoss contents={fieldBoss} />}
+			{chaosGate && chaosGate.length > 0 && <ChaosGate contents={chaosGate} />} */}
 		</>
 	);
 };
